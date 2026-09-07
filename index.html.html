@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jyoti Singh — Senior Full Stack Engineer / Lead / Product Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B211F;
+    --bg-raised: #0F2A27;
+    --paper: #EDEAE0;
+    --ink: #E8E4D8;
+    --ink-dim: #9FB3AE;
+    --ink-faint: #5E756F;
+    --gold: #C9A227;
+    --gold-dim: #8A7020;
+    --teal: #4FBDB3;
+    --line: #24413C;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    font-size:16px;
+  }
+  ::selection{background:var(--gold);color:var(--bg);}
+  a{color:var(--teal);text-decoration:none;}
+  a:hover{color:var(--gold);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,33,31,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;}
+  .nav-mark{font-family:var(--font-display);font-weight:600;font-size:1rem;letter-spacing:0.02em;color:var(--ink);}
+  .nav-mark span{color:var(--gold);}
+  .nav-links{display:flex;gap:28px;font-family:var(--font-mono);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;}
+  .nav-links a{color:var(--ink-dim);}
+  .nav-links a:hover{color:var(--gold);}
+  @media (max-width:640px){.nav-links{display:none;}}
+
+  header.hero{padding:96px 0 64px;position:relative;}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+  h1{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2.4rem, 6vw, 4.2rem);line-height:1.02;letter-spacing:-0.01em;
+    color:var(--paper);
+  }
+  h1 em{font-style:normal;color:var(--teal);}
+  .thesis{max-width:640px;margin-top:22px;font-size:1.1rem;color:var(--ink-dim);}
+  .hero-meta{
+    margin-top:32px;display:flex;flex-wrap:wrap;gap:24px;
+    font-family:var(--font-mono);font-size:0.82rem;color:var(--ink-faint);
+  }
+  .hero-meta a{color:var(--ink-dim);}
+
+  .trajectory{margin-top:72px;}
+  .trajectory-label{
+    font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;
+    letter-spacing:0.1em;color:var(--ink-faint);margin-bottom:22px;
+  }
+  .track{position:relative;padding:0 0 40px;}
+  .track-line{position:absolute;top:11px;left:0;right:0;height:1px;background:var(--line);}
+  .track-line-fill{position:absolute;top:11px;right:0;height:1px;background:var(--gold-dim);width:78%;}
+  .track-nodes{display:flex;justify-content:space-between;position:relative;}
+  .node{display:flex;flex-direction:column;align-items:flex-start;max-width:150px;}
+  .dot{width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--ink-faint);margin-bottom:14px;}
+  .node.done .dot{background:var(--gold-dim);border-color:var(--gold-dim);}
+  .node.current .dot{background:var(--teal);border-color:var(--teal);box-shadow:0 0 0 4px rgba(79,189,179,0.15);}
+  .node.next .dot{background:transparent;border-color:var(--gold);border-style:dashed;}
+  .node-year{font-family:var(--font-mono);font-size:0.7rem;color:var(--ink-faint);margin-bottom:4px;}
+  .node-title{font-family:var(--font-display);font-size:0.92rem;font-weight:600;color:var(--ink);}
+  .node.next .node-title{color:var(--gold);}
+  .node.current .node-title{color:var(--teal);}
+  .node-sub{font-size:0.78rem;color:var(--ink-faint);margin-top:2px;}
+  @media (max-width:720px){
+    .track-nodes{flex-direction:column;gap:28px;}
+    .track-line,.track-line-fill{display:none;}
+    .node{max-width:none;}
+  }
+
+  section{padding:88px 0;border-top:1px solid var(--line);}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:48px;flex-wrap:wrap;gap:12px;}
+  .section-num{font-family:var(--font-mono);color:var(--gold);font-size:0.85rem;}
+  h2{font-family:var(--font-display);font-size:1.9rem;color:var(--paper);font-weight:600;}
+  .section-note{font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.06em;}
+
+  .summary-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;}
+  .summary-grid p{color:var(--ink-dim);font-size:1.02rem;}
+  .stat-list{display:flex;flex-direction:column;gap:18px;}
+  .stat{border-left:2px solid var(--line);padding-left:16px;}
+  .stat b{display:block;font-family:var(--font-mono);font-size:1.5rem;color:var(--teal);}
+  .stat span{font-size:0.85rem;color:var(--ink-faint);}
+  @media (max-width:760px){.summary-grid{grid-template-columns:1fr;}}
+
+  .case{
+    background:var(--bg-raised);border:1px solid var(--line);border-radius:4px;
+    margin-bottom:22px;overflow:hidden;
+  }
+  .case-head{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding:26px 28px;gap:20px;flex-wrap:wrap;
+  }
+  .case-tab{font-family:var(--font-mono);font-size:0.72rem;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+  .case-head h3{font-family:var(--font-display);font-size:1.3rem;color:var(--paper);font-weight:600;}
+  .case-head .co{color:var(--ink-faint);font-weight:400;font-size:1rem;}
+  .case-dates{font-family:var(--font-mono);font-size:0.78rem;color:var(--ink-faint);white-space:nowrap;}
+  .case-body{padding:0 28px 28px;}
+  .case-block{margin-bottom:16px;}
+  .case-block .k{font-family:var(--font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-faint);margin-bottom:6px;}
+  .case-block .v{color:var(--ink);font-size:0.98rem;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .tag{
+    font-family:var(--font-mono);font-size:0.72rem;color:var(--ink-dim);
+    border:1px solid var(--line);padding:4px 10px;border-radius:100px;
+  }
+
+  .lead-panel{
+    background:linear-gradient(135deg, rgba(201,162,39,0.08), transparent);
+    border:1px solid var(--gold-dim);border-radius:4px;padding:32px;
+  }
+  .lead-panel h3{font-family:var(--font-display);color:var(--gold);font-size:1.15rem;margin-bottom:12px;}
+  .lead-panel p{color:var(--ink-dim);font-size:0.98rem;}
+
+  .skill-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .skill-col .k{font-family:var(--font-mono);font-size:0.72rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.08em;margin-bottom:14px;}
+  .skill-col ul{list-style:none;}
+  .skill-col li{color:var(--ink-dim);font-size:0.92rem;padding:6px 0;border-bottom:1px solid var(--line);}
+  @media (max-width:720px){.skill-cols{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.skill-cols{grid-template-columns:1fr;}}
+
+  footer{padding:56px 0 80px;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  footer .f-links{display:flex;gap:22px;font-family:var(--font-mono);font-size:0.8rem;}
+  footer .f-note{color:var(--ink-faint);font-size:0.8rem;font-family:var(--font-mono);}
+
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">JYOTI<span>·</span>SINGH</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Senior Full Stack Engineer · Paris</div>
+    <h1>I build the <em>system</em>.<br>I'm ready to lead the ones that matter.</h1>
+    <p class="thesis">Six years shipping production, AI-integrated platforms across fintech, healthcare, legal tech, proptech and gaming. I'm looking for my next chapter as a Senior, Lead, or Product Engineer — the kind of role where the architecture and the product judgment behind it are the same job.</p>
+    <div class="hero-meta">
+      <span>jyotisinghtech93@gmail.com</span>
+      <a href="https://linkedin.com/in/jyoti-singh-b46ab4102" target="_blank">linkedin.com/in/jyoti-singh</a>
+      <a href="https://github.com/jass587" target="_blank">github.com/jass587</a>
+    </div>
+
+    <div class="trajectory">
+      <div class="trajectory-label">The arc so far — most recent first</div>
+      <div class="track">
+        <div class="track-line"></div>
+        <div class="track-line-fill"></div>
+        <div class="track-nodes">
+          <div class="node next">
+            <div class="dot"></div>
+            <div class="node-year">Next</div>
+            <div class="node-title">Senior / Lead / Product Engineer</div>
+            <div class="node-sub">Owning architecture and product outcomes together</div>
+          </div>
+          <div class="node current">
+            <div class="dot"></div>
+            <div class="node-year">2022–Present</div>
+            <div class="node-title">Senior Engineer, AI Platforms</div>
+            <div class="node-sub">Owning architecture &amp; product decisions at Ziffy.ai</div>
+          </div>
+          <div class="node done">
+            <div class="dot"></div>
+            <div class="node-year">2020–2022</div>
+            <div class="node-title">Full Stack Developer</div>
+            <div class="node-sub">Shipped for clients, then in fintech &amp; legal tech</div>
+          </div>
+          <div class="node done">
+            <div class="dot"></div>
+            <div class="node-year">2015–2020</div>
+            <div class="node-title">Technical Recruiter</div>
+            <div class="node-sub">Learned how orgs hire &amp; plan around product</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="summary">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="section-num">01 —</span> <h2 style="display:inline">Profile</h2></div>
+    </div>
+    <div class="summary-grid">
+      <p>I've spent six years as the engineer teams hand ambiguous problems to — "help investors search property in plain English," "make a 100-page legal doc reviewable in minutes." Each time, the real work was deciding what to build before writing a line of code: which metrics mattered, which trade-off to make under a deadline, what the user actually needed versus what they asked for. I'm ready to do that work as a formal part of the role — as a senior or lead engineer setting technical direction, or a product engineer sitting at the intersection of the two — instead of doing it informally, as the engineer in the room who ends up deciding anyway.</p>
+      <div class="stat-list">
+        <div class="stat"><b>6+ yrs</b><span>Building production web platforms</span></div>
+        <div class="stat"><b>5</b><span>Industries shipped in — fintech, health, legal, proptech, gaming</span></div>
+        <div class="stat"><b>5 yrs</b><span>Prior stakeholder &amp; hiring management experience</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="section-num">02 —</span> <h2 style="display:inline">Case files</h2></div>
+      <div class="section-note">Most recent role first — reframed around the decision, not just the delivery</div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div>
+          <div class="case-tab">Proptech · AI Product — Current</div>
+          <h3>Senior Full Stack Engineer <span class="co">— Ziffy.ai (AI Property Search &amp; Investment Platform)</span></h3>
+        </div>
+        <div class="case-dates">Dec 2022 — Present</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <div class="k">The problem</div>
+          <div class="v">Real estate investors were filtering listings by rigid dropdowns instead of describing what they actually wanted — "under €500k, 7% rental yield" doesn't map to a checkbox UI.</div>
+        </div>
+        <div class="case-block">
+          <div class="k">The decision</div>
+          <div class="v">Replaced structured filters with a natural-language search layer (LLM-parsed), then built a ranking model on top using ROI, cap rate and appreciation potential — so the product's core value became judgment, not just search.</div>
+        </div>
+        <div class="case-block">
+          <div class="k">What I owned</div>
+          <div class="v">Sole architecture owner across frontend and FastAPI backend, the query-parsing pipeline, and the investment-ranking logic — end to end, from the ambiguous ask to the deployed feature, including the trade-off calls a lead would normally sign off on.</div>
+        </div>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">TypeScript</span><span class="tag">FastAPI</span>
+          <span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">OpenAI</span><span class="tag">AWS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div>
+          <div class="case-tab">Legal Tech</div>
+          <h3>Full Stack Engineer <span class="co">— Litera Microsystems (Litera Check)</span></h3>
+        </div>
+        <div class="case-dates">Jun — Nov 2022</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <div class="k">The problem</div>
+          <div class="v">Legal reviewers needed to proofread 100+ page documents without the browser choking on render time — a usability problem as much as a performance one.</div>
+        </div>
+        <div class="case-block">
+          <div class="k">The decision</div>
+          <div class="v">Built grammar highlighting on virtualized, lazily-loaded rendering so reviewers could work on huge documents at the same speed as short ones — prioritized perceived speed over completeness of initial render.</div>
+        </div>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">Fluent UI</span><span class="tag">.NET</span><span class="tag">Virtualization</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div>
+          <div class="case-tab">Fintech</div>
+          <h3>Full Stack Developer <span class="co">— UST BlueConch (Cheque Processing Portal)</span></h3>
+        </div>
+        <div class="case-dates">Jun 2021 — May 2022</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <div class="k">The problem</div>
+          <div class="v">Three separate teams owned overlapping parts of one workflow, which made every release a coordination bottleneck.</div>
+        </div>
+        <div class="case-block">
+          <div class="k">The decision</div>
+          <div class="v">Split the portal into a micro-frontend architecture with code splitting, so each team could ship its module independently — trading some upfront complexity for release speed later.</div>
+        </div>
+        <div class="tags">
+          <span class="tag">React.js</span><span class="tag">.NET</span><span class="tag">Micro-frontends</span>
+        </div>
+      </div>
+    </div>
+    <div class="case">
+      <div class="case-head">
+        <div>
+          <div class="case-tab">Gaming · Realtime Systems</div>
+          <h3>Full Stack Developer <span class="co">— UST BlueConch (Multiplayer Gaming Platform)</span></h3>
+        </div>
+        <div class="case-dates">Jun 2021 — May 2022</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <div class="k">The problem</div>
+          <div class="v">Live gameplay, chat and payments needed to stay in sync in real time, on infrastructure that had to scale unpredictably with concurrent players.</div>
+        </div>
+        <div class="case-block">
+          <div class="k">The decision</div>
+          <div class="v">Built the realtime layer on WebSockets with Redis for shared state, containerized and deployed on AWS so gameplay, chat and payment flows could scale independently instead of as one monolith.</div>
+        </div>
+        <div class="tags">
+          <span class="tag">Node.js</span><span class="tag">WebSockets</span><span class="tag">Redis</span>
+          <span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">AWS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="section-num">03 —</span> <h2 style="display:inline">Leadership &amp; product thinking</h2></div>
+    </div>
+    <div class="lead-panel">
+      <h3>Five years managing stakeholders — the part of technical leadership that isn't code</h3>
+      <p>Before engineering, I led end-to-end technical recruitment and workforce planning across four companies — hiring for engineering, IT and SAP roles, and sitting between hiring managers, candidates and leadership on every decision. That's where I learned to manage a room of stakeholders with different incentives, which is most of what a strong technical lead does beyond writing code. I bring that into how I scope and sequence work now: asking who's affected by a decision, and what it costs to get wrong, before I write the ticket.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="section-num">04 —</span> <h2 style="display:inline">Toolkit</h2></div>
+    </div>
+    <div class="skill-cols">
+      <div class="skill-col">
+        <div class="k">Frontend</div>
+        <ul>
+          <li>React.js / Next.js</li>
+          <li>TypeScript / Redux</li>
+          <li>WebSockets / Realtime UI</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="k">Backend &amp; Infra</div>
+        <ul>
+          <li>Node.js / Express.js</li>
+          <li>Python / FastAPI, Flask</li>
+          <li>AWS (Lambda, EC2, S3, DynamoDB)</li>
+          <li>Docker / GitHub Actions</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <div class="k">Data &amp; AI</div>
+        <ul>
+          <li>PostgreSQL / MongoDB</li>
+          <li>Redis</li>
+          <li>LLM Integration / OpenAI</li>
+          <li>REST / GraphQL APIs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="f-note">Open to Senior, Lead &amp; Product Engineer roles — Paris / Remote</div>
+    <div class="f-links">
+      <a href="mailto:jyotisinghtech93@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/jyoti-singh-b46ab4102" target="_blank">LinkedIn</a>
+      <a href="https://github.com/jass587" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
